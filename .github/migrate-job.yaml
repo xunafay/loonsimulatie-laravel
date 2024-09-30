@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: laravel-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: ghcr.io/xunafay/loonsimulatie-laravel:main
+        command: ["php", "artisan", "migrate", "--force"]
+      restartPolicy: OnFailure
