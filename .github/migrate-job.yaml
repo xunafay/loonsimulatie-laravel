@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: laravel-migrate-
+  namespace: vlaanderen
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: ghcr.io/xunafay/loonsimulatie-laravel-backend:main
+        command: ["php", "artisan", "migrate", "--force"]
+      restartPolicy: OnFailure
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
